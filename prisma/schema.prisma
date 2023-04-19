@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider     = "mysql"
+  provider     = "postgresql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
@@ -72,10 +72,10 @@ model Post {
   id            String   @id @default(cuid())
   title         String?  @db.Text
   description   String?  @db.Text
-  content       String?  @db.LongText
+  content       String?
   slug          String   @default(cuid())
   image         String?  @db.Text
-  imageBlurhash String?  @db.LongText
+  imageBlurhash String?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   published     Boolean  @default(false)
@@ -93,7 +93,7 @@ model Site {
   logo          String?
   font          String   @default("font-cal")
   image         String?  @db.Text
-  imageBlurhash String?  @db.LongText
+  imageBlurhash String?
   subdomain     String?  @unique
   customDomain  String?  @unique
   createdAt     DateTime @default(now())
@@ -112,5 +112,5 @@ model Example {
   domainCount   Int?
   url           String?
   image         String? @db.Text
-  imageBlurhash String? @db.LongText
+  imageBlurhash String?
 }
